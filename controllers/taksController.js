@@ -68,7 +68,8 @@ export const deleteTask = async (req, res, next) => {
         message: "Task Not Complete Yet",
       });
     }
-    Task = await taskCollection.findByIdAndDelete(id);
+    Task = await taskCollection.findById(id);
+    await Task.deleteOne();
     return res.json({
       success: true,
       message: Task,
