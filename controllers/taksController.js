@@ -62,7 +62,7 @@ export const deleteTask = async (req, res, next) => {
         message: "Task Not Found",
       });
     }
-    if (Task && !Task.isComplete) {
+    if (Task && Task.isComplete === false) {
       return res.json({
         success: false,
         message: "Task Not Complete Yet",
