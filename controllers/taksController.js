@@ -33,7 +33,7 @@ export const newTask = async (req, res, next) => {
 
 export const updateTask = async (req, res, next) => {
   try {
-    const { id } = req.params;
+    const id  = req.params.id;
     const Task = await taskCollection.findById(id);
     if (!Task) {
       return res.json({
@@ -55,15 +55,15 @@ export const updateTask = async (req, res, next) => {
 // delete task
 export const deleteTask = async (req, res, next) => {
   try {
-    const { id } = req.params;
-    // const Task = await taskCollection.findById(id);
-    // if (!Task) {
-    //   return res.json({
-    //     success: false,
-    //     message: "Task Not Found",
-    //   });
-    // }
-    // Task = await taskCollection.findById(id);
+    const id  = req.params.id;
+    const Task = await taskCollection.findById(id);
+    if (!Task) {
+      return res.json({
+        success: false,
+        message: "Task Not Found",
+      });
+    }
+    Task = await taskCollection.findById(id);
     await taskCollection.deleteOne({_id:id});
     return res.json({
       success: true,
