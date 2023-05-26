@@ -63,7 +63,6 @@ export const deleteTask = async (req, res, next) => {
         message: "Task Not Found",
       });
     }
-    Task = await taskCollection.findById(id);
     await taskCollection.deleteOne({_id:id});
     return res.json({
       success: true,
