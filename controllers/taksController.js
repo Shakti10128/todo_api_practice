@@ -72,7 +72,7 @@ export const deleteTask = async (req, res, next) => {
     await taskCollection.deleteOne({_id:id});
     return res.json({
       success: true,
-      message: Task,
+      message: "Task Deleted",
     });
   } catch (error) {
     next(error);
