@@ -52,6 +52,7 @@ export const updateTask = async (req, res, next) => {
   }
 };
 
+// delete task
 export const deleteTask = async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -62,13 +63,7 @@ export const deleteTask = async (req, res, next) => {
         message: "Task Not Found",
       });
     }
-    if (Task && Task.isComplete === false) {
-      return res.json({
-        success: false,
-        message: "Task Not Complete Yet",
-      });
-    }
-    Task = await taskCollection.findById(id);
+    // Task = await taskCollection.findById(id);
     await Task.deleteOne();
     return res.json({
       success: true,
