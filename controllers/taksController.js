@@ -63,6 +63,12 @@ export const deleteTask = async (req, res, next) => {
         message: "Task Not Found",
       });
     }
+    if(Task.isComplete === false){
+      return res.json({
+        success: false,
+        message: "Task Not Complete Yet",
+      });
+    }
     await taskCollection.deleteOne({_id:id});
     return res.json({
       success: true,
