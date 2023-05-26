@@ -56,15 +56,15 @@ export const updateTask = async (req, res, next) => {
 export const deleteTask = async (req, res, next) => {
   try {
     const { id } = req.params;
-    let Task = await taskCollection.findById(id);
-    if (!Task) {
-      return res.json({
-        success: false,
-        message: "Task Not Found",
-      });
-    }
+    // const Task = await taskCollection.findById(id);
+    // if (!Task) {
+    //   return res.json({
+    //     success: false,
+    //     message: "Task Not Found",
+    //   });
+    // }
     // Task = await taskCollection.findById(id);
-    await Task.deleteOne();
+    await taskCollection.deleteOne({_id:id});
     return res.json({
       success: true,
       message: Task,
